@@ -33,6 +33,7 @@ class _SentinelTokenStoppingCriteria(transformers.StoppingCriteria):
 
                 window = trimmed_sample[-sentinel_len:]
                 if torch.all(torch.eq(sentinel, window)):
+                    print(f"Stopping because the LLM tried to generate stop string {sentinel}: {shared.tokenizer.decode(sentinel[0])}")
                     return True
         return False
 
